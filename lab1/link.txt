@@ -1,0 +1,19 @@
+# ⛔ Các URL bị bảo vệ (phải đăng nhập mới truy cập được):
+http://localhost:8080/poly/url0
+http://localhost:8080/poly/url1
+http://localhost:8080/poly/url2
+http://localhost:8080/poly/url3
+http://localhost:8080/poly/url4
+
+# ✅ Các URL truy cập tự do:
+http://localhost:8080/
+http://localhost:8080/login/form          → hiện form đăng nhập
+http://localhost:8080/login/success       → thông báo đăng nhập thành công
+http://localhost:8080/login/failure       → thông báo đăng nhập sai
+http://localhost:8080/login/exit          → thông báo đăng xuất thành công
+http://localhost:8080/logout              → thực hiện đăng xuất
+
+# 🧪 Tài khoản đăng nhập test:
+user@gmail.com / 123
+admin@gmail.com / 123
+both@gmail.com / 123

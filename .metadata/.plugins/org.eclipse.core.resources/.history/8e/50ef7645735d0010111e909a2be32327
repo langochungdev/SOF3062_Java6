@@ -1,0 +1,23 @@
+✅ CÁC LINK TEST BÀI 1 → BÀI 3 (Java 6)
+
+📌 ĐĂNG NHẬP:
+- GET  /login/form          → form đăng nhập
+- POST /login/check         → xử lý login (email, matkhau)
+- GET  /login/success       → đăng nhập thành công
+- GET  /login/failure       → đăng nhập thất bại
+- GET  /login/exit          → đăng xuất thành công
+- GET  /logout              → đăng xuất
+
+📌 TRUY CẬP CÁC URL PHÂN QUYỀN:
+/poly/url1   → Yêu cầu đăng nhập
+/poly/url2   → ROLE_USER
+/poly/url3   → ROLE_ADMIN
+/poly/url4   → ROLE_USER hoặc ROLE_ADMIN
+
+📌 TRUY CẬP SAI QUYỀN:
+→ Tự động chuyển về: /access-denied.html
+
+📌 GỢI Ý TÀI KHOẢN TEST:
+- user@gmail.com  / 123   → ROLE_USER
+- admin@gmail.com / 123   → ROLE_ADMIN
+- both@gmail.com  / 123   → ROLE_USER, ROLE_ADMIN

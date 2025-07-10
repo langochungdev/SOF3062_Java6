@@ -1,0 +1,14 @@
+spring.thymeleaf.encoding=UTF-8
+spring.web.resources.static-locations=classpath:/static/
+
+# server.port=8080
+spring.datasource.url=jdbc:sqlserver://localhost;database=j6lab2b3;encrypt=true;trustServerCertificate=true;
+spring.datasource.username=sa
+spring.datasource.password=songlong
+spring.datasource.driverClassName=com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+spring.jpa.hibernate.ddl-auto=none
+spring.jpa.show-sql=false
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.SQLServerDialect
+
+

@@ -1,0 +1,75 @@
+package web.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+public class SecurityConfig {
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    }
+
+    @Bean
+    public UserDetailsService userDetailsService(PasswordEncoder pe) {
+        String password = pe.encode("123");
+        UserDetails user1 = User.withUsername("user@gmail.com").password(password).roles("USER").build();
+        UserDetails user2 = User.withUsername("admin@gmail.com").password(password).roles("ADMIN").build();
+        UserDetails user3 = User.withUsername("both@gmail.com").password(password).roles("USER", "ADMIN").build();
+        return new InMemoryUserDetailsManager(user1, user2, user3);
+    }
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.csrf(csrf -> csrf.disable());
+        http.cors(cors -> cors.disable());
+
+        http.authorizeHttpRequests(auth -> auth
+            .requestMatchers("/poly/url1").authenticated()
+            .requestMatchers("/poly/url2").hasRole("USER")
+            .requestMatchers("/poly/url3").hasRole("ADMIN")
+            .requestMatchers("/poly/url4").hasAnyRole("USER", "ADMIN")
+            .anyRequest().permitAll()
+        );
+
+        http.formLogin(form -> form
+            .loginPage("/login/form")
+            .loginProcessingUrl("/login/check")
+            .defaultSuccessUrl("/login/success", false)
+            .failureUrl("/login/failure")
+            .usernameParameter("email")
+            .passwordParameter("matkhau")
+            .permitAll()
+        );
+
+        http.rememberMe(remember -> remember
+            .tokenValiditySeconds(3 * 24 * 60 * 60)
+            .rememberMeCookieName("remember-me")
+            .rememberMeParameter("remember-me")
+        );
+
+        http.logout(logout -> logout
+            .logoutUrl("/logout")
+            .logoutSuccessUrl("/login/exit")
+            .invalidateHttpSession(true)
+            .clearAuthentication(true)
+            .deleteCookies("remember-me")
+        );
+
+        // Xử lý từ chối truy cập
+        http.exceptionHandling(ex -> ex
+            .accessDeniedPage("/access-denied.html")
+        );
+
+        return http.build();
+    }
+}

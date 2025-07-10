@@ -1,0 +1,9 @@
+package web.dao;
+import org.springframework.data.jpa.repository.JpaRepository;
+import web.entity.User;
+import web.entity.Role;
+import web.entity.UserRole;
+
+public interface UserDAO extends JpaRepository<User, String> {}
+public interface RoleDAO extends JpaRepository<Role, String> {}
+public interface UserRoleDAO extends JpaRepository<UserRole, Long> {}

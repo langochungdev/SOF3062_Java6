@@ -1,0 +1,24 @@
+✅ CÁC LINK TEST BÀI 1 → BÀI 3 (Java 6)
+
+📌 ĐĂNG NHẬP:
+- http://localhost:8080/login/form          → form đăng nhập
+- http://localhost:8080/login/check         → xử lý login (POST: email, matkhau)
+- http://localhost:8080/login/success       → đăng nhập thành công
+- http://localhost:8080/login/failure       → đăng nhập thất bại
+- http://localhost:8080/login/exit          → đăng xuất thành công
+- http://localhost:8080/logout              → thực hiện logout
+
+📌 TRUY CẬP CÁC URL PHÂN QUYỀN (từ SecurityConfig):
+- http://localhost:8080/poly/url1   → yêu cầu đăng nhập
+- http://localhost:8080/poly/url2   → chỉ ROLE_USER truy cập
+- http://localhost:8080/poly/url3   → chỉ ROLE_ADMIN truy cập
+- http://localhost:8080/poly/url4   → ROLE_USER hoặc ROLE_ADMIN đều truy cập được
+- Các URL khác                     → ai cũng truy cập được (permitAll)
+
+📌 TRUY CẬP SAI QUYỀN:
+→ Tự động chuyển về: http://localhost:8080/access-denied.html
+
+📌 GỢI Ý TÀI KHOẢN TEST:
+- user@gmail.com  / 123   → ROLE_USER
+- admin@gmail.com / 123   → ROLE_ADMIN
+- both@gmail.com  / 123   → ROLE_USER, ROLE_ADMIN

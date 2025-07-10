@@ -1,0 +1,66 @@
+package web.config;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+public class SecurityConfig {
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    }
+
+    @Bean
+    public UserDetailsService userDetailsService(PasswordEncoder pe) {
+        String password = pe.encode("123");
+        UserDetails user1 = User.withUsername("user@gmail.com").password(password).roles("USER").build();
+        UserDetails user2 = User.withUsername("admin@gmail.com").password(password).roles("ADMIN").build();
+        UserDetails user3 = User.withUsername("both@gmail.com").password(password).roles("USER", "ADMIN").build();
+        return new InMemoryUserDetailsManager(user1, user2, user3);
+    }
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.csrf(cf -> cf.disable()).cors(cf -> cf.disable());
+
+        http.authorizeHttpRequests(cf -> {
+            cf.requestMatchers("/poly/**").authenticated();
+            cf.anyRequest().permitAll();
+        });
+
+        http.formLogin(cf -> {
+            cf.loginPage("/login/form");
+            cf.loginProcessingUrl("/login/check");
+            cf.defaultSuccessUrl("/login/success", false);
+            cf.failureUrl("/login/failure");
+            cf.permitAll();
+            cf.usernameParameter("username");
+            cf.passwordParameter("password");
+        });
+
+        http.rememberMe(cf -> {
+            cf.tokenValiditySeconds(3 * 24 * 60 * 60);
+            cf.rememberMeCookieName("remember-me");
+            cf.rememberMeParameter("remember-me");
+        });
+
+        http.logout(cf -> {
+            cf.logoutUrl("/logout");
+            cf.logoutSuccessUrl("/login/exit");
+            cf.clearAuthentication(true);
+            cf.invalidateHttpSession(true);
+            cf.deleteCookies("remember-me");
+        });
+
+        return http.build();
+    }
+
+}
