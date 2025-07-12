@@ -1,0 +1,14 @@
+# 📌 Test trên Postman để lấy token
+POST http://localhost:8080/poly/login
+Content-Type: application/json
+
+# 📤 Body:
+{
+  "username": "user@gmail.com",
+  "password": "123"
+}
+
+# ✅ Response trả về:
+{
+  "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyQGdtYWlsLmNvbSIsImlhdCI6MTY5... (rất dài)"
+}

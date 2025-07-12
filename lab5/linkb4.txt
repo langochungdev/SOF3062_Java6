@@ -1,0 +1,32 @@
+### GET Lấy tất cả sinh viên
+http://localhost:8080/students
+
+
+### GET Lấy theo ID
+http://localhost:8080/students/SV001
+
+
+### POST Thêm mới body/raw 
+http://localhost:8080/students
+{
+  "id": "SV005",
+  "name": "Trần Hưng Đạo",
+  "mark": 8.5,
+  "gender": true
+}
+
+
+
+### PUT Cập nhật theo ID
+http://localhost:8080/students/SV005
+Content-Type: application/json
+{
+  "id": "SV005",
+  "name": "Trần Hưng Đạo update",
+  "mark": 8.5,
+  "gender": true
+}
+
+
+### DELETE  Xoá theo ID
+http://localhost:8080/students/SV005

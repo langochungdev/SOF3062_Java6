@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>JWT Axios Demo</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <h2>Đăng nhập</h2>
+  <button onclick="login()">Đăng nhập</button>
+
+  <h2>Truy cập API</h2>
+  <button onclick="gotoUrl0()">/poly/url0 (public)</button>
+  <button onclick="gotoUrl1()">/poly/url1 (authenticated)</button>
+  <button onclick="gotoUrl3()">/poly/url3 (admin)</button>
+
+  <script>
+    let token;
+
+    function login() {
+      const url = "http://localhost:8080/poly/login";
+      const data = {
+        username: "user@gmail.com",
+        password: "123"
+      };
+      axios.post(url, data)
+        .then(resp => {
+          console.log("post() success", resp.data);
+          token = resp.data.token;
+        })
+        .catch(error => {
+          console.log("post() error", error);
+        });
+    }
+
+    function gotoUrl0() {
+      const url = "http://localhost:8080/poly/url0";
+      axios.get(url)
+        .then(resp => {
+          console.log("get() success", resp.data);
+        })
+        .catch(error => {
+          console.log("get() error", error);
+        });
+    }
+
+    function gotoUrl1() {
+      const url = "http://localhost:8080/poly/url1";
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      };
+      axios.get(url, config)
+        .then(resp => {
+          console.log("get() success", resp.data);
+        })
+        .catch(error => {
+          console.log("get() error", error);
+        });
+    }
+
+    function gotoUrl3() {
+      const url = "http://localhost:8080/poly/url3";
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      };
+      axios.get(url, config)
+        .then(resp => {
+          console.log("get() success", resp.data);
+        })
+        .catch(error => {
+          console.log("get() error", error);
+        });
+    }
+  </script>
+</body>
+</html>

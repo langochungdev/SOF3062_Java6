@@ -1,0 +1,8 @@
+# ✅ Có thể test bằng trình duyệt hoặc Postman (GET không cần JWT)
+GET http://localhost:8080/poly/url0
+
+# ✅ Các URL còn lại yêu cầu JWT → nếu test vẫn trả về 403
+GET http://localhost:8080/poly/url1
+GET http://localhost:8080/poly/url2
+GET http://localhost:8080/poly/url3
+GET http://localhost:8080/poly/url4

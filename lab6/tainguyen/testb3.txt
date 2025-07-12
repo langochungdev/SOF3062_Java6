@@ -1,0 +1,16 @@
+# ✅ Header dùng để test các URL bên dưới
+Authorization: Bearer <paste-token-ở-trên-vào-đây>
+
+# 🟢 URL: /poly/url1 → yêu cầu ĐĂNG NHẬP
+GET http://localhost:8080/poly/url1
+
+# 🟢 URL: /poly/url2 → yêu cầu ROLE_USER
+GET http://localhost:8080/poly/url2
+
+# 🟢 URL: /poly/url3 → yêu cầu ROLE_ADMIN
+GET http://localhost:8080/poly/url3
+
+# 🟢 URL: /poly/url4 → yêu cầu ROLE_USER hoặc ADMIN
+GET http://localhost:8080/poly/url4
+
+# ❌ Nếu token không đúng hoặc user không đủ quyền → 403 Forbidden

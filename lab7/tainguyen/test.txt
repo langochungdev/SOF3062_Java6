@@ -1,0 +1,96 @@
+### CATEGORY
+
+# GET all categories
+http://localhost:8080/api/categories
+
+# GET category by id
+http://localhost:8080/api/categories/1
+
+# POST create new category
+http://localhost:8080/api/categories
+{
+  "id": 6,
+  "name": "Tai nghe"
+}
+
+# PUT update category
+http://localhost:8080/api/categories/6
+{
+  "id": 6,
+  "name": "Tai nghe (update)"
+}
+
+# DELETE category
+http://localhost:8080/api/categories/6
+
+
+### PRODUCT
+
+# GET all products
+http://localhost:8080/api/products
+
+# GET product by id
+http://localhost:8080/api/products/101
+
+# POST create new product
+http://localhost:8080/api/products
+
+{
+  "id": 106,
+  "name": "Galaxy S24",
+  "price": 22000000,
+  "date": "2024-07-12",
+  "category": {
+    "id": 1
+  }
+}
+
+# PUT update product
+http://localhost:8080/api/products/106
+
+{
+  "id": 106,
+  "name": "Galaxy S24 (update)",
+  "price": 27000000,
+  "date": "2024-07-12",
+  "category": {
+    "id": 1
+  }
+}
+
+# DELETE product
+http://localhost:8080/api/products/106
+
+
+### USER
+
+# GET all users
+http://localhost:8080/api/users
+
+# GET user by username
+http://localhost:8080/api/users/user1
+
+# POST create new user
+http://localhost:8080/api/users
+
+{
+  "username": "test1",
+  "password": "123456",
+  "fullname": "Người Thử",
+  "enabled": true,
+  "role": "USER"
+}
+
+# PUT update user
+http://localhost:8080/api/users/test1
+
+{
+  "username": "test1",
+  "password": "654321",
+  "fullname": "Người Thử (Update)",
+  "enabled": false,
+  "role": "ADMIN"
+}
+
+# DELETE user
+http://localhost:8080/api/users/test1

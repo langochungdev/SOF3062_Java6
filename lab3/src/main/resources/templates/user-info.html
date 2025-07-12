@@ -1,3 +1,4 @@
+<html xmlns:th="http://www.thymeleaf.org">
 <div th:switch="${@auth.isAuthenticated()}">
     <ul th:case="true">
         <li>Username: <b>[[${@auth.username}]]</b></li>

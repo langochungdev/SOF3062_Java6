@@ -1,0 +1,35 @@
+-- get all 
+https://j6lab4-8bd39-default-rtdb.asia southeast1.firebasedatabase.app/students.json
+
+
+-- thêm tự sinh key
+https://j6lab4-8bd39-default-rtdb.asia southeast1.firebasedatabase.app/students.json
+Method: POST
+
+-- thêm đặt tên key 
+Method: PUT
+https://j6lab4-8bd39-default-rtdb.asia-southeast1.firebasedatabase.app/students/<key>.json
+
+Body: (chọn raw → JSON)
+{
+  "id": "SV003",
+  "name": "Sinh viên 003",
+  "mark": 9.2,
+  "gender": true
+}
+
+
+-- get 1 sv 
+https://j6lab4-8bd39-default-rtdb.asia-southeast1.firebasedatabase.app/students/<key>.json
+
+-- update Method: PUT
+https://j6lab4-8bd39-default-rtdb.asia-southeast1.firebasedatabase.app/students/<key>.json 
+{
+  "id": "SV003",
+  "name": "Sinh viên 003 (Updated)",
+  "mark": 9.2,
+  "gender": true
+}
+
+-- Method: DELETE
+https://j6lab4-8bd39-default-rtdb.asia-southeast1.firebasedatabase.app/students/<key>.json 

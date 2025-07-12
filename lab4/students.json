@@ -1,0 +1,16 @@
+{
+  "students": {
+    "sv001": {
+      "id": "SV001",
+      "name": "Sinh viên 001",
+      "mark": 8.0,
+      "gender": true
+    },
+    "sv002": {
+      "id": "SV002",
+      "name": "Sinh viên 002",
+      "mark": 6.5,
+      "gender": false
+    }
+  }
+}
